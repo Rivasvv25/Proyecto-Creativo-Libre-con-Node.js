@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Simple</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="main-container">
+        <!-- Left Column: Timer & Controls -->
+        <section class="timer-section neu-card">
+            <h1 class="app-title">POMODORO</h1>
+
+            <div class="timer-display">
+                <svg class="progress-ring" width="300" height="300">
+                    <circle class="progress-ring__circle" stroke="white" stroke-width="12" fill="transparent" r="140"
+                        cx="150" cy="150" />
+                </svg>
+                <div class="time-text" id="timeDisplay">25:00</div>
+            </div>
+
+            <div class="timer-controls">
+                <button id="btnStart" class="btn-primary">INICIAR</button>
+                <button id="btnPause" class="btn-secondary hidden">PAUSAR</button>
+            </div>
+            <button id="btnReset" class="btn-text">Reiniciar</button>
+
+            <!-- Configuration Panel -->
+            <div id="configPanel" class="config-panel">
+                <div class="input-group">
+                    <label>ETIQUETA</label>
+                    <input type="text" id="labelInput" placeholder="Sesión de enfoque" value="Trabajo Profundo">
+                </div>
+                <div style="height: 20px;"></div> <!-- Spacer -->
+                <div class="time-inputs">
+                    <div class="input-group">
+                        <label>TRABAJO (MIN)</label>
+                        <input type="number" id="workInput" value="25" min="1" max="120">
+                    </div>
+                    <div class="input-group">
+                        <label>DESCANSO (MIN)</label>
+                        <input type="number" id="breakInput" value="5" min="0" max="60">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aura Overlay (Inside Timer Section to keep context) -->
+            <div id="auraSection" class="aura-section hidden">
+                <div class="canvas-container">
+                    <canvas id="auraCanvas" width="300" height="300"></canvas>
+                </div>
+                <h2 style="margin: 20px 0; color: #3E4A59;">¡Sesión Completada!</h2>
+                <p id="auraMessage" style="color: #8B9BB4; margin-bottom: 30px;">Gran trabajo.</p>
+                <button id="btnCloseAura" class="btn-primary">Nueva Sesión</button>
+            </div>
+        </section>
+
+        <!-- Right Column: Dashboard -->
+        <section class="dashboard">
+            <!-- Stats Cards -->
+            <div class="stats-row">
+                <div class="stat-card">
+                    <span class="stat-val" id="statSessions">0</span>
+                    <span class="stat-lbl">Sesiones</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-val" id="statWork">0</span>
+                    <span class="stat-lbl">Minutos</span>
+                </div>
+            </div>
+
+            <!-- History -->
+            <div class="history-container">
+                <h3>Historial de Hoy</h3>
+                <div class="history-list">
+                    <ul id="sessionsList">
+                        <!-- Populated by JS -->
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
