@@ -17,7 +17,13 @@ app.use(morgan('dev'));
 app.use(express.json({ limit: '100kb' }));
 
 // Static Files
-app.use(express.static(path.join(__dirname, '../../frontend')));
+// Static Files
+app.use(express.static(path.join(__dirname, '../public')));
+
+// Root Route
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../public/index.html'));
+});
 
 // API Routes
 app.use('/api', sessionsRouter);
